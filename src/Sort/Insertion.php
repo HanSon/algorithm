@@ -12,42 +12,33 @@ class Insertion extends Sort
 
     public static function sort(array $array) :array
     {
-        $result = [];
-        $index = 0;
-        $result[0] = $array[0];
-        unset($array[0]);
+        $size = count($array);
 
-        foreach ($array as $key => $value) {
-            foreach ($result as $k => $v) {
-                if ($value > $v){
-                    $index = $k + 1;
-                }else {
-                    $result[$index + 1] = $result[$index];
-                    $result[$index] = $value;
-                    $index = 0;
-                }
+        for ($i = 1; $i < $size; $i ++) {
+            $tmp = $array[$i];
+            echo 'tmp:' . $tmp . PHP_EOL;
+            for ($j = $i - 1; $j >= 0 && $array[0] < $array[$j]; $j --) {
+                echo 'j:' . $j . PHP_EOL;
+                $array[$j + 1] = $array[$j];
             }
+            $array[$j + 1] = $tmp;
         }
 
-        return $result;
+        return $array;
     }
 
     public static function sort1(array $array) :array
     {
-        $index = 0;
+        $size = count($array);
 
-        foreach ($array as $key => $value) {
-            foreach ($result as $k => $v) {
-                if ($value > $v){
-                    $index = $k + 1;
-                }else {
-                    $result[$index + 1] = $result[$index];
-                    $result[$index] = $value;
-                    $index = 0;
-                }
+        for ($i = 1; $i < $size; $i ++) {
+            $array[0] = $array[$i];
+            for ($j = $i - 1; $array[0] < $array[$j]; $j --) {
+                $array[$j + 1] = $array[$j];
             }
+            $array[$j + 1] = $array[0];
         }
 
-        return $result;
+        return $array;
     }
 }
