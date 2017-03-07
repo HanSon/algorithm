@@ -16,9 +16,7 @@ class Insertion extends Sort
 
         for ($i = 1; $i < $size; $i ++) {
             $tmp = $array[$i];
-            echo 'tmp:' . $tmp . PHP_EOL;
-            for ($j = $i - 1; $j >= 0 && $array[0] < $array[$j]; $j --) {
-                echo 'j:' . $j . PHP_EOL;
+            for ($j = $i - 1; $j >= 0 && $tmp < $array[$j]; $j --) {
                 $array[$j + 1] = $array[$j];
             }
             $array[$j + 1] = $tmp;
